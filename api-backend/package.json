@@ -1,11 +1,21 @@
 {
-  "name": "api-backend",
+  "name": "games-aviabird",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Games Aviabird",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server",
+    "dev": "nodemon server"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Rohit Kumar",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
 }
