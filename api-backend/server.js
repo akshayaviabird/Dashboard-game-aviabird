@@ -10,6 +10,7 @@ const connectDB = require('./config/db');
 connectDB();
 
 // Routes files
+const auth = require('./api/auth');
 const leaderboard = require('./api/leaderboard')
 const guessimage = require('./api/games/guessimage')
 
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use(cors());
 
 // Mount routers
+app.use('/api/v1/auth', auth);
 app.use('/api/v1/leaderbaord', leaderboard)
 app.use('/api/v1/guessimage', guessimage)
 
