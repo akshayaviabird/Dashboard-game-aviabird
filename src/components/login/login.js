@@ -18,7 +18,7 @@ const Login = () => {
   }); 
 
   const { email, password, error, loading, didRedirect } = values;
-  const { data } = isAutheticated();
+  const  data = isAutheticated();
 
   const handleChange = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value });
@@ -32,9 +32,11 @@ const Login = () => {
     setValues({ ...values, error: false, loading: true });
     signin({ email, password }) 
     .then(data => { 
-        if (data.success === 'false') { 
+        if (data.success === false) { 
           setValues({ ...values, error: data.msg, loading: false });
         } else {
+          console.log(data)
+
           authenticate(data, () => {
             setValues({
               ...values,
@@ -54,6 +56,7 @@ const Login = () => {
     //     return <p>redirect to user dashboard</p>;
     //   }
     // }
+    console.log('datat',data)
     if (data) {
       return <Redirect to="/dashboard" />;
     }

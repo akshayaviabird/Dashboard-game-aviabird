@@ -17,7 +17,7 @@ const ValidatedSignUpForm = () => {
       onSubmit={(values, { setSubmitting }) => {
         setIsLaoding(true)
         setTimeout(() => {
-          fetch('http://localhost:5000/api/v1/auth/register',{
+          fetch('http://localhost:3000/api/v1/auth/register',{
             method:'post',
             headers: {
               Accept: "application/json",

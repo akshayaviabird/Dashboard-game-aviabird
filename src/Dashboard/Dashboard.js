@@ -11,7 +11,7 @@ const Dashboard = () => {
                 <div className="col-sm-12" style={{ backgroundColor: '#BA68C8', lineHeight: '0.3', borderRadius: ' 15px' }} ><DashHead /></div>
                 <div className="col-sm-3" style={{ border: "5px solid white", backgroundColor: '#A597b0', borderRadius: '15px' }}><Profile /></div>
                 <div className="col-sm-6" style={{ border: "5px solid white", backgroundColor: '#C0A7C5', borderRadius: '15px' }} ><PlayGames /></div>
-                <div className="col-sm-3" style={{ border: "5px solid white", backgroundColor: '#878A8D', borderRadius: '15px' }}><LeaderBoard /></div>
+                <div className="col-sm-3" style={{ border: "5px solid white", backgroundColor: '#878A8D', borderRadius: '15px',overflowY:'auto',overflowX:'hidden',height:'95vh' }}><LeaderBoard /></div>
             </div>
         </div>
     )
