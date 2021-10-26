@@ -1,14 +1,14 @@
 import React from "react";
 import { useHistory } from "react-router";
-import {signout,isAutheticated} from '../api/auth'
+import { signout, isAutheticated } from '../api/auth'
 
 const Profile = () => {
-   const history= useHistory()
-   const { data } = isAutheticated();
-   console.log(data)
-    const handleLogout=()=>{
-      signout()
-     history.push('/')
+    const history = useHistory()
+    const data = isAutheticated();
+    console.log(data)
+    const handleLogout = () => {
+        signout()
+        history.push('/')
     }
     return (
         <>
