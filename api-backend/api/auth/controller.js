@@ -22,14 +22,14 @@ exports.login = async (req,res,next) => {
     const user = await User.findOne({email}).select('+password');
 
     if(!user){
-        return res.status(400).json({ success: "false", msg: "User not found!"})
+        return res.status(200).json({ success: "false", msg: "User not found!"})
     };
 
     // Check for password match
     const isMatch = await user.matchPassword(password);
 
     if(!isMatch){
-        return res.status(400).json({ success: "false", msg: "Invalid Password!"})
+        return res.status(200).json({ success: "false", msg: "Invalid Password!"})
     }
 
     res.status(200).json({

@@ -15,7 +15,7 @@ const Login = () => {
     error: "",
     loading: false,
     didRedirect: false
-  });
+  }); 
 
   const { email, password, error, loading, didRedirect } = values;
   const { data } = isAutheticated();
@@ -31,9 +31,9 @@ const Login = () => {
     }
     setValues({ ...values, error: false, loading: true });
     signin({ email, password }) 
-    .then(data => {
-        if (data.error) {
-          setValues({ ...values, error: data.error, loading: false });
+    .then(data => { 
+        if (data.success === 'false') { 
+          setValues({ ...values, error: data.msg, loading: false });
         } else {
           authenticate(data, () => {
             setValues({
@@ -43,10 +43,6 @@ const Login = () => {
           });
         }
       })
-      .catch((data)=>{
-        console.log("signin request failed")
-      });
-
   };
 
   const performRedirect = () => {
@@ -70,14 +66,16 @@ const Login = () => {
 
   const errorMessage = () => {
     return (
-      <div className="row">
-        <div className="col-md-6 offset-sm-3 text-left">
+      <div className="row" style={{marginTop:'12px'}}>
+        <div className="col-md-4 offset-sm-4 text-left">
           <div
             className="alert alert-danger"
             style={{ display: error ? "" : "none" }}
           >
             {error}
           </div>
+        </div>
+        <div className="col-md-4 offset-sm-4 text-left">
         </div>
       </div>
     );
@@ -111,7 +109,7 @@ const Login = () => {
                 placeholder="Enter password"
               />
             </div>
-            <button type="submit" className="login-btn">
+            <button   type="submit" className="login-btn">
               Login
             </button>
             <Row>

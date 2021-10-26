@@ -7,10 +7,14 @@ export const signin = (user) => {
     },
     body: JSON.stringify(user),
   })
-    .then((response) => {
-      return response.json();
+    .then((response) => { 
+      if (response.status >= 200 && response.status <= 299) {
+        return response.json();
+      } else {
+        throw Error('sssssssssssssssssssssssssss');
+      }
     })
-    .catch((err) => console.log(err));
+    // .catch((err) => console.log(err));
 };
 export const authenticate = (data, next) => {
   if (typeof window !== "undefined") {

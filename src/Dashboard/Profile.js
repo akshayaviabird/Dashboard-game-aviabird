@@ -15,7 +15,7 @@ const Profile = () => {
             <div>
                 <div><h2>Profile</h2></div>
                 <div style={{ width: '200px', height: '200px', borderRadius: '150px', border: '1px solid black', margin: 'auto', marginTop: '50px' }}><img scr="https://pbs.twimg.com/media/EYQBiFZWoAwiWOx.jpg" alt="" /></div>
-                <div style={{ marginTop: '20px', marginBottom: '10px' }}><h3>{data.name}</h3></div>
+                <div style={{ marginTop: '20px', marginBottom: '10px' }}><h3>{data? data.name:'Name'}</h3></div>
                 <div style={{ textAlign: 'left' }}><UserInfo  userInfo={data}/></div>
                 <div><button
                     style={{
@@ -38,7 +38,7 @@ const Profile = () => {
 const UserInfo = (props) => {
     return (
         <>
-            <p><b>Email:{props.userInfo.email}</b></p>
+            <p><b>Email:{props.userInfo?props.userInfo.email:""}</b></p>
             <p><b>Designation: </b></p>
             <p><b>No. of Games</b></p>
             <p><b>Winner:</b></p>
