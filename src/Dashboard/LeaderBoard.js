@@ -26,7 +26,7 @@ const LeaderData = () => {
                         </div>
                         <div >
                             Name
-                        </div>
+                        </div> 
                         <div >
                             <b>300</b>
                         </div>
