@@ -9,7 +9,7 @@ import { isAutheticated } from "./api/auth";
 function App() {
 
   const data = isAutheticated();
-
+ 
   return (
     <Router>
       <Switch>
@@ -17,7 +17,7 @@ function App() {
           <Route exact path="/" component={Login}></Route>
           <Route path="/register" component={SignUp}></Route>
           <Route path="/dashboard" component={Dashboard}></Route>
-          {data ? <Redirect to="/dashboard" /> : <Redirect to="/" />}
+          {/* {data ? <Redirect to="/dashboard" /> : <Redirect to="/" />} */}
         </main>
       </Switch>
     </Router>

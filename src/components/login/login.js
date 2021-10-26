@@ -32,7 +32,7 @@ const Login = () => {
     setValues({ ...values, error: false, loading: true });
     signin({ email, password }) 
     .then(data => { 
-        if (data.success === false) { 
+        if (data.success === 'false') { 
           setValues({ ...values, error: data.msg, loading: false });
         } else {
           console.log(data)

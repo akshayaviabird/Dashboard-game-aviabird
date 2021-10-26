@@ -1,9 +1,10 @@
-import React from 'react';
+import React  from 'react';
 import Profile from './Profile';
 import PlayGames from './PlayGames';
-import LeaderBoard from './LeaderBoard';
+import LeaderBoard from './LeaderBoard'; 
 
 const Dashboard = () => {
+
 
     return (
         <div style={{ textAlign: "center" }}>

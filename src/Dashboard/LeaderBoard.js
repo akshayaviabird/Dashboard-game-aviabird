@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import Loader from "../components/common/loader";
+import Gold from '../../src/gold.jpg'
+import Silver from '../../src/silver.png'
+import Bronze from '../../src/bronze.png'
 
 const LeaderBoard = () => {
   const [result, setResult] = useState([]);
@@ -53,7 +56,7 @@ const LeaderData = ({ data }) => {
   return (
       <Card style={{marginBottom:'11px'}}>  
       <p>{new Date(data.date).toLocaleDateString()}</p>
-      {data.score.sort(function (a, b) {return b.points - a.points}).slice(0,3).map((item)=>{
+      {data.score.sort(function (a, b) {return b.points - a.points}).slice(0,3).map((item,index)=>{
           return(
             <div style={{ marginTop: "10px" }}>
             <div className="row">
@@ -72,8 +75,9 @@ const LeaderData = ({ data }) => {
                     style={{ width: "40px", height: "38px", borderRadius: "40px" }}
                   >
                     <img
-                      src="https://pbs.twimg.com/media/EYQBiFZWoAwiWOx.jpg"
-                      alt=""
+                      src={index===0 ? Gold:( index === 1 ? Silver:Bronze)}
+                      alt={index===0 ? 'Gold medal':( index === 1 ? 'Silver medal':'Bronze medal')}
+                      title={index===0 ? 'Gold medal':( index === 1 ? 'Silver medal':'Bronze medal')}
                       style={{ width: "100%", height: "100%", borderRadius: "100%" }}
                     />
                   </div>

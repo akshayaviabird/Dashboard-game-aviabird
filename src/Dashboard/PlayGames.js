@@ -28,7 +28,7 @@ const GameCard = () => {
                     <div style={{ paddingLeft: '10%', textAlign: 'left' }} >
                         <h3 style={{ color: 'white' }}>Game Name</h3>
                         <p>Game description</p>
-                        <button style={{
+                      <a href="https://aviapoker.herokuapp.com" target="_blank" rel="noreferrer"> <button style={{
                             width: '187px', backgroundColor: "#795EBF",
                             color: "white",
                             fontSize: "1.5em",
@@ -36,7 +36,7 @@ const GameCard = () => {
                             borderRadius: "8px",
                             marginBottom: "10px",
                             marginRight: '10px',
-                        }}>Play</button>
+                        }}>Play</button></a> 
                     </div>
                     <div style={{ width: '150px', height: '128px' }}>
                         <img src="https://pbs.twimg.com/media/EYQBiFZWoAwiWOx.jpg" alt="" style={{ width: '100%', height: '100%', borderRadius: '0 10px 10px 0' }} />
