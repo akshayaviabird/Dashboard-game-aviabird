@@ -5,16 +5,35 @@ import { Link, useHistory } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import Loader from "../common/loader";
 const ValidatedSignUpForm = () => {
   const history = useHistory();
-
+  const [isLoading,setIsLaoding]=useState(false)
   return (
-    <Formik
+    <React.Fragment>
+      {isLoading&&<Loader/>}
+   <Formik
       initialValues={{ name:"",email: "", password: "" }}
       onSubmit={(values, { setSubmitting }) => {
+        setIsLaoding(true)
         setTimeout(() => {
-          history.push("/");
-          setSubmitting(false);
+          fetch('http://localhost:5000/api/v1/auth/register',{
+            method:'post',
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(values)
+          }).then((response)=>response.json())
+          .then((data)=>{
+            setIsLaoding(false)
+            history.push("/");
+            setSubmitting(false);
+          }).catch((err)=>{
+            console.log('error',err)
+          }).finally(()=>{
+            setIsLaoding(false)
+          })
         }, 500);
       }}
       validationSchema={Yup.object().shape({
@@ -111,6 +130,8 @@ const ValidatedSignUpForm = () => {
         );
       }}
     </Formik>
+    </React.Fragment>
+ 
   );
 };
 export default ValidatedSignUpForm;
