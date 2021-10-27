@@ -4,9 +4,14 @@ const User = require('../user/model')
 // route POST /api/v1/auth/register
 // access public
 exports.register = async (req,res,next) => {
-    const {name, email, password} = req.body;
-    const user = await User.create({name,email,password});
-    sendTokenResponse(user, 200, res);
+    try {
+        const {name, email, password} = req.body;
+        const user = await User.create({name,email,password});
+        sendTokenResponse(user, 200, res);
+    } catch (error) {
+        res.status(400).json({ success: "false", msg: error.message})
+    }
+    
 };
 
 // @des Login a User
