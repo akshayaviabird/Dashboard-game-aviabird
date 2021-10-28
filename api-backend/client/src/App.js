@@ -1,15 +1,10 @@
 import "./App.css";
 import "../src/bootstrap.min.css";
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./components/login/login";
 import SignUp from "./components/registartion/registration";
 import Dashboard from "./Dashboard/Dashboard";
-import { isAutheticated } from "./api/auth";
-
 function App() {
-
-  const data = isAutheticated();
- 
   return (
     <Router>
       <Switch>
