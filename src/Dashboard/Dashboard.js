@@ -5,6 +5,7 @@ import LeaderBoard from './LeaderBoard';
 
 const Dashboard = () => {
 
+
     return (
         <div style={{ textAlign: "center" }}>
             <div className="row" style={{ width: "70%", margin: 'auto', marginTop: '5px' }}>
