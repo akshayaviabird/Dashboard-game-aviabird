@@ -16,3 +16,7 @@
 color:green;
 font-size: 1.5em;
 }
+
+.card_game:hover{
+  transform: scale(1.1);
+}
