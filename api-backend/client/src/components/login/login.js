@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import "../login/login.css";
 import image from "../../ABRD.png";
-import { Link, useHistory ,Redirect} from "react-router-dom";
+import { Link ,Redirect} from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 import { authenticate, isAutheticated, signin } from "../../api/auth";
 import Loader from "../common/loader";
 
 const Login = () => {
- 
-  const history = useHistory();
+  
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -17,7 +16,7 @@ const Login = () => {
     didRedirect: false
   }); 
 
-  const { email, password, error, loading, didRedirect } = values;
+  const { email, password, error, loading } = values;
   const  data = isAutheticated();
 
   const handleChange = name => event => {
