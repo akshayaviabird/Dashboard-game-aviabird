@@ -49,12 +49,11 @@ const Profile = () => {
             width: "200px",
             height: "200px",
             borderRadius: "150px",
-            border: "1px solid black",
             margin: "auto",
             marginTop: "50px",
           }}
         >
-          <img src={ProfileImg} style={{height:'193px',width:'190px',borderRadius:'150px'}} alt="ProfileImg" />
+          <img src={ProfileImg} style={{ height: '198px', width: '198px', borderRadius: '150px' }} alt="ProfileImg" />
         </div>
         <div style={{ marginTop: "20px", marginBottom: "10px" }}>
           <h3>{profile ? profile.name : "Name"}</h3>

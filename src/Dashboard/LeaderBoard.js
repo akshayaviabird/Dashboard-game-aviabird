@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import Loader from "../components/common/loader";
-import Gold from '../../src/gold.jpg'
+import Gold from '../../src/gold.png'
 import Silver from '../../src/silver.png'
 import Bronze from '../../src/bronze.png'
 
