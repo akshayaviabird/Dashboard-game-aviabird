@@ -6,6 +6,12 @@ const User = require('../user/model')
 exports.register = async (req,res,next) => {
     try {
         const {name, email, password} = req.body;
+
+        const Exitinguser = await User.findOne({email:email})
+
+        if(Exitinguser){
+            return res.status(200).json({ success: "false", msg: "User already registerd!"})
+        }
         const user = await User.create({name,email,password});
         sendTokenResponse(user, 200, res);
     } catch (error) {

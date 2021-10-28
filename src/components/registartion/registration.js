@@ -9,9 +9,29 @@ import Loader from "../common/loader";
 const ValidatedSignUpForm = () => {
   const history = useHistory();
   const [isLoading,setIsLaoding]=useState(false)
+  const [hasError,setError]=useState("")
+
+  const errorMessage = () => {
+    return (
+      <div className="row" style={{marginTop:'12px'}}>
+        <div className="col-md-4 offset-sm-4 text-left">
+          <div
+            className="alert alert-danger"
+            style={{ display: hasError ? "" : "none" }}
+          >
+            {hasError}
+          </div>
+        </div>
+        <div className="col-md-4 offset-sm-4 text-left">
+        </div>
+      </div>
+    );
+  };
+
   return (
     <React.Fragment>
       {isLoading&&<Loader/>}
+      {errorMessage()}
    <Formik
       initialValues={{ name:"",email: "", password: "" }}
       onSubmit={(values, { setSubmitting }) => {
@@ -26,9 +46,13 @@ const ValidatedSignUpForm = () => {
             body: JSON.stringify(values)
           }).then((response)=>response.json())
           .then((data)=>{
-            setIsLaoding(false)
-            history.push("/");
-            setSubmitting(false);
+            if(data.success === 'false'){
+             setError(data.msg)
+            }else{
+              setIsLaoding(false)
+              history.push("/");
+              setSubmitting(false);
+            }
           }).catch((err)=>{
             console.log('error',err)
           }).finally(()=>{
