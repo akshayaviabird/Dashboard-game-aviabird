@@ -14,7 +14,7 @@ const LeaderBoard = () => {
   }, []);
   const fetchUser = () => {
     setIsLloading(true);
-    fetch("http://localhost:3000/api/v1/leaderbaord")
+    fetch("/api/v1/leaderbaord")
       .then((response) => response.json())
       .then((data) => {
         setIsLloading(true);

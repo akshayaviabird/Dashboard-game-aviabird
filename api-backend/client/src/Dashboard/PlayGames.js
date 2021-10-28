@@ -10,7 +10,7 @@ const PlayGames = () => {
     }, [])
 
     const fetchLiveGame = () => {
-        fetch('http://localhost:3000/api/v1/livegame')
+        fetch('/api/v1/livegame')
             .then((response) => response.json())
             .then((result) => {
                 let livegames = result.data.filter((item) => item.live === true)

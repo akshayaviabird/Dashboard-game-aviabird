@@ -17,7 +17,7 @@ const Profile = () => {
 
   const findMe = () => {
     const token = JSON.parse(localStorage.getItem("jwt")).token;
-    fetch("http://localhost:3000/api/v1/user/me", {
+    fetch("/api/v1/user/me", {
       method: "get",
       headers: {
         Accept: "application/json",
