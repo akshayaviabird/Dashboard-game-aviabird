@@ -56,7 +56,7 @@ const LeaderData = ({ data }) => {
   return (
     <Card style={{ marginBottom: '11px' }}>
       <p>{new Date(data.date).toLocaleDateString()}</p>
-      {data.score.sort(function (a, b) { return b.points - a.points }).slice(0, 3).reverse().map((item, index) => {
+      {data.score.sort(function (a, b) { return b.points - a.points }).slice(0, 3).map((item, index) => {
         return (
           <div style={{ marginTop: "10px" }}>
             <div className="row">
