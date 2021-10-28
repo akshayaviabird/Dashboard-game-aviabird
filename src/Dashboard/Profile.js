@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { signout, isAutheticated } from "../api/auth";
+import ProfileImg from '../rohit.png';
 
 const Profile = () => {
   const history = useHistory();
@@ -53,7 +54,7 @@ const Profile = () => {
             marginTop: "50px",
           }}
         >
-          <img scr="https://pbs.twimg.com/media/EYQBiFZWoAwiWOx.jpg" alt="" />
+          <img scr={ProfileImg} alt="ProfileImg" />
         </div>
         <div style={{ marginTop: "20px", marginBottom: "10px" }}>
           <h3>{profile ? profile.name : "Name"}</h3>
