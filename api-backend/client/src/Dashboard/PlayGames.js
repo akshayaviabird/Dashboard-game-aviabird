@@ -58,7 +58,7 @@ const GameCard = ({ item }) => {
     return (
         <div className="row" style={{ marginTop: "20px" }}>
             <div className="col-sm-12">
-                <div style={{ background: '#35B6D0', margin: 'auto', width: '90%', display: 'flex', justifyContent: 'space-between', borderRadius: '10px', boxShadow: "0px 5px 0px 5px grey" }}>
+                <div className='card_game' style={{ background: '#35B6D0', margin: 'auto', width: '90%', display: 'flex', justifyContent: 'space-between', borderRadius: '10px', boxShadow: "0px 5px 0px 5px grey" }}>
                     <div style={{ paddingLeft: '10%', textAlign: 'left' }} >
                         <h3 style={{ color: 'white' }}>Avia-Poker</h3>
                         <p style={{ fontWeight: 'bold' }}><span class="logged-in blink">●</span>&nbsp;{item.name}</p>
