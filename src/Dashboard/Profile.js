@@ -54,7 +54,7 @@ const Profile = () => {
             marginTop: "50px",
           }}
         >
-          <img scr={ProfileImg} alt="ProfileImg" />
+          <img src={ProfileImg} style={{height:'193px',width:'190px',borderRadius:'150px'}} alt="ProfileImg" />
         </div>
         <div style={{ marginTop: "20px", marginBottom: "10px" }}>
           <h3>{profile ? profile.name : "Name"}</h3>
