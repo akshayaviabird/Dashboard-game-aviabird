@@ -5,16 +5,59 @@ import { Link, useHistory } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import Loader from "../common/loader";
 const ValidatedSignUpForm = () => {
   const history = useHistory();
+  const [isLoading,setIsLaoding]=useState(false)
+  const [hasError,setError]=useState("")
+
+  const errorMessage = () => {
+    return (
+      <div className="row" style={{marginTop:'12px'}}>
+        <div className="col-md-4 offset-sm-4 text-left">
+          <div
+            className="alert alert-danger"
+            style={{ display: hasError ? "" : "none" }}
+          >
+            {hasError}
+          </div>
+        </div>
+        <div className="col-md-4 offset-sm-4 text-left">
+        </div>
+      </div>
+    );
+  };
 
   return (
-    <Formik
+    <React.Fragment>
+      {isLoading&&<Loader/>}
+      {errorMessage()}
+   <Formik
       initialValues={{ name:"",email: "", password: "" }}
       onSubmit={(values, { setSubmitting }) => {
+        setIsLaoding(true)
         setTimeout(() => {
-          history.push("/");
-          setSubmitting(false);
+          fetch('/api/v1/auth/register',{
+            method:'post',
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(values)
+          }).then((response)=>response.json())
+          .then((data)=>{
+            if(data.success === 'false'){
+             setError(data.msg)
+            }else{
+              setIsLaoding(false)
+              history.push("/");
+              setSubmitting(false);
+            }
+          }).catch((err)=>{
+            console.log('error',err)
+          }).finally(()=>{
+            setIsLaoding(false)
+          })
         }, 500);
       }}
       validationSchema={Yup.object().shape({
@@ -22,8 +65,8 @@ const ValidatedSignUpForm = () => {
         email: Yup.string().email().required("Email Required"),
         password: Yup.string()
           .required("No password provided.")
-          .min(8, "Password is too short - should be 8 chars minimum.")
-          .matches(/(?=.*[0-9])/, "Password must contain a number."),
+          .min(6, "Password is too short - should be 6 chars minimum.")
+          // .matches(/(?=.*[0-9])/, "Password must contain a number."),
       })}
     >
       {(props) => {
@@ -111,6 +154,8 @@ const ValidatedSignUpForm = () => {
         );
       }}
     </Formik>
+    </React.Fragment>
+ 
   );
 };
 export default ValidatedSignUpForm;

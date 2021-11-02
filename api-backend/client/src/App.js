@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./components/login/login";
 import SignUp from "./components/registartion/registration";
 import Dashboard from "./Dashboard/Dashboard";
-
 function App() {
   return (
     <Router>
@@ -13,7 +12,7 @@ function App() {
           <Route exact path="/" component={Login}></Route>
           <Route path="/register" component={SignUp}></Route>
           <Route path="/dashboard" component={Dashboard}></Route>
-
+          {/* {data ? <Redirect to="/dashboard" /> : <Redirect to="/" />} */}
         </main>
       </Switch>
     </Router>

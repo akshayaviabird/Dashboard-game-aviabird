@@ -42,6 +42,15 @@ app.use('/api/v1/livegame', livegame);
 app.use('/api/v1/leaderbaord', leaderboard);
 app.use('/api/v1/guessimage', guessimage);
 
+
+if(process.env.NODE_ENV=="production"){
+  app.use(express.static('client/build'))
+  const path = require('path')
+  app.get("*",(req,res)=>{
+      res.sendFile(path.resolve(__dirname,'client','build','index.html'))
+  })
+}
+
 app.listen(PORT, () => {
   console.log(`App listening in ${process.env.NODE_ENV} mode on port: ${PORT}`);
 });

@@ -2,11 +2,13 @@ import React from 'react';
 import Profile from './Profile';
 import PlayGames from './PlayGames';
 import LeaderBoard from './LeaderBoard';
+import BackLead from '../../src/Lead.png';
 
 const Dashboard = () => {
 
+
     return (
-        <div style={{ textAlign: "center" }}>
+        <div style={{ textAlign: "center" , backgroundImage: `url(${BackLead})`, height: "100vh"}}>
             <div className="row" style={{ width: "70%", margin: 'auto', marginTop: '5px' }}>
                 <div className="col-sm-12" style={{ backgroundColor: '#BA68C8', lineHeight: '0.3', borderRadius: ' 15px' }} ><DashHead /></div>
                 <div className="col-sm-3" style={{ border: "5px solid white", backgroundColor: '#A597b0', borderRadius: '15px' }}><Profile /></div>
