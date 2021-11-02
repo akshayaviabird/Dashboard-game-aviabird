@@ -55,8 +55,8 @@ const Profile = () => {
         >
           <img src={ProfileImg} style={{ height: '198px', width: '198px', borderRadius: '150px' }} alt="ProfileImg" />
         </div>
-        <div style={{ marginTop: "20px", marginBottom: "10px" }}>
-          <h3>{profile ? profile.name : "Name"}</h3>
+        <div style={{ marginTop: "20px", marginBottom: "10px", color: '#E0E0E0' }}>
+          <h3>{profile ? profile.name.toUpperCase() : "Name"}</h3>
         </div>
         <div style={{ textAlign: "left" }}>
           <UserInfo userInfo={profile} />
@@ -65,8 +65,8 @@ const Profile = () => {
           <button
             style={{
               width: "230px",
-              backgroundColor: "#795EBF",
-              color: "white",
+              backgroundColor: "#82B1FF",
+              // color: "white",
               fontSize: "1.5em",
               border: "none",
               borderRadius: "8px",
@@ -87,19 +87,19 @@ const UserInfo = (props) => {
   return (
     <>
       <p>
-        <b>Email:{props.userInfo ? props.userInfo.email : ""}</b>
+        <b>Email:&emsp;{props.userInfo ? props.userInfo.email : ""}</b>
       </p>
       <p>
-        <b>Designation: </b>
+        <b>Designation: &emsp; </b>
       </p>
       <p>
-        <b>No. of Games</b>
+        <b>No. of Games: &emsp;</b>
       </p>
       <p>
-        <b>Winner:</b>
+        <b>Winner: &emsp;</b>
       </p>
       <p>
-        <b>Last Login:</b>
+        <b>Last Login: &emsp;</b>
       </p>
     </>
   );

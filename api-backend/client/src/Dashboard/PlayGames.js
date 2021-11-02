@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PokerLogo from '../../src/card-logo.jpg'
+import Qq from '../../src/Qq.gif';
 import './PlayGame.css';
 const PlayGames = () => {
 
@@ -46,7 +47,15 @@ const PlayGames = () => {
                         overflowY: "scroll",
                         height: "75vh"
                     }}>
-                    {livegameList.map((item) => <GameCard item={item} />)}
+                    {livegameList.length !== 0 ? livegameList.map((item) => <GameCard item={item} />) :
+                        <div> <div className="blinkk" style={{ margin: 'auto', marginTop: '115px', fontWeight: 'bold', fontFamily: 'auto', fontSize: '5em' }}>
+                            <div>No Live Games!</div>
+                            <div>Host One</div>
+                        </div>
+                            <marquee direction="right"><img style={{ width: '350px', height: '200px' }} src={Qq} alt="" /> <span style={{ fontSize: '4em', fontWeight: "bold", color: 'tomato' }}>Games</span></marquee>
+                        </div>
+
+                    }
                 </div>
             </div>
         </>
@@ -61,7 +70,7 @@ const GameCard = ({ item }) => {
                 <div className='card_game' style={{ background: '#35B6D0', margin: 'auto', width: '90%', display: 'flex', justifyContent: 'space-between', borderRadius: '10px', boxShadow: "0px 5px 0px 5px grey" }}>
                     <div style={{ paddingLeft: '10%', textAlign: 'left' }} >
                         <h3 style={{ color: 'white' }}>Avia-Poker</h3>
-                        <p style={{ fontWeight: 'bold' }}><span class="logged-in blink">●</span>&nbsp;{item.name}</p>
+                        <p style={{ fontWeight: 'bold', color: 'black' }}><span class="logged-in blink">●</span>&nbsp;{item.name}</p>
                         <a href={item.url} target="_blank" rel="noreferrer"> <button style={{
                             width: '187px', backgroundColor: "#795EBF",
                             color: "white",
