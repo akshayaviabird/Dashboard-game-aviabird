@@ -7,6 +7,9 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please provide your name'],
     },
+    image: {
+        type: String
+    },
     email: {
         type: String,
         required: [true, 'Please provide an email address'],

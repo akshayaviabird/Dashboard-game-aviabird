@@ -1,7 +1,9 @@
+const path = require('path');
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const fileupload = require('express-fileupload');
 
 // Load env file
 dotenv.config({ path: './config/config.env' });
@@ -26,6 +28,12 @@ app.use(express.json());
 app.use(cors());
 
 app.use(cookieParser());
+
+// File upload
+app.use(fileupload());
+
+// Set static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Mount routers
 app.use('/api/v1/auth', auth);
