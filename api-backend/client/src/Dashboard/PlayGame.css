@@ -20,3 +20,9 @@ font-size: 1.5em;
 .card_game:hover{
   transform: scale(1.1);
 }
+.modle-close{
+  color: whitesmoke;
+    border-radius: 6px;
+    background-color: tomato;
+    font-size: 1em;
+}

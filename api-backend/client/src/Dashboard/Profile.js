@@ -6,15 +6,36 @@ import ProfileImg from '../rohit.png';
 const Profile = () => {
   const history = useHistory();
   const [profile, setProfile] = useState("");
+  const [result, setResult] = useState([]);
+  
+  
+
   useEffect(() => {
     const data = isAutheticated();
     if (!data) {
       history.push("/");
     } else {
       findMe();
+      fetchUser()
     }
   }, [history]);
 
+  const fetchUser = () => {
+     
+    // fetch("/api/v1/leaderbaord")
+    //   .then((response) => response.json())
+    //   .then((data) => { 
+    //       let datass=data.data.score.map((item)=>{
+            
+    //       })
+    //     setResult(data.data);
+    //   })
+    //   .catch(() => { 
+    //   })
+    //   .finally(() => { 
+    //   });
+  };
+console.log('result',result)
   const findMe = () => {
     const token = JSON.parse(localStorage.getItem("jwt")).token;
     fetch("/api/v1/user/me", {
@@ -84,13 +105,11 @@ const Profile = () => {
 };
 
 const UserInfo = (props) => {
+  console.log('sdd',props.userInfo)
   return (
     <>
       <p>
         <b>Email:{props.userInfo ? props.userInfo.email : ""}</b>
-      </p>
-      <p>
-        <b>Designation: </b>
       </p>
       <p>
         <b>No. of Games</b>
