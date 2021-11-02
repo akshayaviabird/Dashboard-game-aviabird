@@ -6,7 +6,6 @@ import ProfileImg from '../rohit.png';
 const Profile = () => {
   const history = useHistory();
   const [profile, setProfile] = useState("");
-  const [result, setResult] = useState([]);
   
   
 
@@ -16,26 +15,10 @@ const Profile = () => {
       history.push("/");
     } else {
       findMe();
-      fetchUser()
     }
   }, [history]);
 
-  const fetchUser = () => {
-     
-    // fetch("/api/v1/leaderbaord")
-    //   .then((response) => response.json())
-    //   .then((data) => { 
-    //       let datass=data.data.score.map((item)=>{
-            
-    //       })
-    //     setResult(data.data);
-    //   })
-    //   .catch(() => { 
-    //   })
-    //   .finally(() => { 
-    //   });
-  };
-console.log('result',result)
+
   const findMe = () => {
     const token = JSON.parse(localStorage.getItem("jwt")).token;
     fetch("/api/v1/user/me", {
@@ -74,7 +57,7 @@ console.log('result',result)
             marginTop: "50px",
           }}
         >
-          <img src={ProfileImg} style={{ height: '198px', width: '198px', borderRadius: '150px' }} alt="ProfileImg" />
+          <img src={profile.image? `/imageme/${profile.image}`:ProfileImg} style={{ height: '198px', width: '198px', borderRadius: '150px' }} alt="ProfileImg" />
         </div>
         <div style={{ marginTop: "20px", marginBottom: "10px" }}>
           <h3>{profile ? profile.name : "Name"}</h3>

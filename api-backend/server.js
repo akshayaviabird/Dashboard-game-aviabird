@@ -33,7 +33,10 @@ app.use(cookieParser());
 app.use(fileupload());
 
 // Set static folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'))); 
+
+// router geting my profile pic from uploads folder
+app.use('/imageme', express.static(path.join(__dirname, 'public','uploads')))
 
 // Mount routers
 app.use('/api/v1/auth', auth);

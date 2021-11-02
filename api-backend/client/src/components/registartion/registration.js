@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState } from "react";
 import "../login/login.css";
 import image from "../../ABRD.png";
 import { Link, useHistory } from "react-router-dom";
@@ -9,7 +9,8 @@ import Loader from "../common/loader";
 const ValidatedSignUpForm = () => {
   const history = useHistory();
   const [isLoading, setIsLaoding] = useState(false);
-  const [hasError, setError] = useState("");
+  const [hasError, setError] = useState(""); 
+  // const [backendError,setBackendError]=useState("")
   const errorMessage = () => {
     return (
       <div className="row" style={{ marginTop: "12px" }}>
@@ -31,21 +32,19 @@ const ValidatedSignUpForm = () => {
       {isLoading && <Loader />}
       {errorMessage()}
       <Formik
-        initialValues={{ name: "", email: "", password: "" ,images:""}}
+        initialValues={{ name: "", email: "", password: "", file: undefined}}
         onSubmit={(values, { setSubmitting }) => {
-          let data = new FormData();
-          data.append("photo1", values.photo1);
-          console.log('as',data)
-          values.images=data
+          let data = new FormData(); 
+          var imagedatas = document.querySelector('input[type="file"]').files[0];
+          data.set("file", imagedatas);
+          data.set("email",values.email)
+          data.set("name",values.name)
+          data.set("password",values.password)
           setIsLaoding(true);
           setTimeout(() => {
             fetch("/api/v1/auth/register", {
               method: "post",
-              headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(values),
+              body: data
             })
               .then((response) => response.json())
               .then((data) => {
@@ -53,7 +52,7 @@ const ValidatedSignUpForm = () => {
                   setError(data.msg);
                 } else {
                   setIsLaoding(false);
-                  // history.push("/");
+                  history.push("/");
                   setSubmitting(false);
                 }
               })
@@ -71,9 +70,8 @@ const ValidatedSignUpForm = () => {
           password: Yup.string()
             .required("No password provided.")
             .min(6, "Password is too short - should be 6 chars minimum."),
-            // image: Yup..required("Name Required"),
 
-          // .matches(/(?=.*[0-9])/, "Password must contain a number."),
+          // file: Yup.mixed().required("A file is required")  
         })}
       >
         {(props) => {
@@ -144,35 +142,28 @@ const ValidatedSignUpForm = () => {
                     <div className="input-feedback">{errors.password}</div>
                   )}
                   <div class="form-group">
-                    {/* <label>Upload Image</label> */}
+                    <label>Upload Image*</label>
                     <div class="input-group">
                       <span class="input-group-btn">
                         <span class="btn btn-default btn-file">
                           <input
-                            // type="file"
-                            // id="imgInp" 
-                            // className="upload"
-                            // value={values.image}
-                            // onChange={handleChange}
-                            // onBlur={handleBlur}
-
+                            className="upload"
+                            value={values.file} 
                             type="file"
-                            name="file"
+                            name="photo1"
                             onChange={(event) =>{
-                              props.setFieldValue("photo1", event.target.files[0]);
-                            }}
-                            // onChange={(e)=> setUploadImage(e.target.files[0])}
+                              props.setFieldValue("photo", event.target.files[0]);
+                            }} 
                           />
                         </span>
                       </span>
                     </div>
                     <img id="img-upload" />
                   </div>
-
                   <button
                     type="submit"
                     className="login-btn"
-                    disabled={isSubmitting}
+                    // disabled={isSubmitting}
                   >
                     Register
                   </button>
