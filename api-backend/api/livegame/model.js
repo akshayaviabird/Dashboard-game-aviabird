@@ -12,6 +12,10 @@ const gameSchema = mongoose.Schema({
     hostname: {
         type: String
     },
+    noOfPlayers: {
+        type: Number,
+        default: 1
+    },
     url: {
         type: String
     }
