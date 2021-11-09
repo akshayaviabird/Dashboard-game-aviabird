@@ -8,11 +8,12 @@ export const signin = (user) => {
     body: JSON.stringify(user),
   })
     .then((response) => { 
-      if (response.status >= 200 && response.status <= 299) {
-        return response.json();
+      console.log(response)
+      if (!response.ok) {
+       throw Error('Please check your email and password!!');
       } else {
-        throw Error('sssssssssssssssssssssssssss');
-      }
+        return response.json();
+      } 
     })
     // .catch((err) => console.log(err));
 };

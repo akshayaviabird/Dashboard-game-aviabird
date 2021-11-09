@@ -35,3 +35,9 @@ font-size: 1.5em;
     visibility: hidden;
   }
 }
+.modle-close{
+  color: whitesmoke;
+    border-radius: 6px;
+    background-color: tomato;
+    font-size: 1em;
+}

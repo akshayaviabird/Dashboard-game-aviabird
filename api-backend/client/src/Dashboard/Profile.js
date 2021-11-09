@@ -6,6 +6,9 @@ import ProfileImg from '../rohit.png';
 const Profile = () => {
   const history = useHistory();
   const [profile, setProfile] = useState("");
+  
+  
+
   useEffect(() => {
     const data = isAutheticated();
     if (!data) {
@@ -14,6 +17,7 @@ const Profile = () => {
       findMe();
     }
   }, [history]);
+
 
   const findMe = () => {
     const token = JSON.parse(localStorage.getItem("jwt")).token;
@@ -53,12 +57,12 @@ const Profile = () => {
             marginTop: "50px",
           }}
         >
-          <img src={ProfileImg} style={{ height: '198px', width: '198px', borderRadius: '150px' }} alt="ProfileImg" />
+          <img src={profile.image? `/imageme/${profile.image}`:ProfileImg} style={{ height: '198px', width: '198px', borderRadius: '150px' }} alt="ProfileImg" />
         </div>
         <div style={{ marginTop: "20px", marginBottom: "10px", color: '#E0E0E0' }}>
           <h3>{profile ? profile.name.toUpperCase() : "Name"}</h3>
         </div>
-        <div style={{ textAlign: "left" }}>
+        <div style={{ textAlign: "left",marginTop:'54px' }}>
           <UserInfo userInfo={profile} />
         </div>
         <div>
@@ -84,23 +88,38 @@ const Profile = () => {
 };
 
 const UserInfo = (props) => {
+  console.log('sdd',props.userInfo)
+  
   return (
     <>
-      <p>
-        <b>Email:&emsp;{props.userInfo ? props.userInfo.email : ""}</b>
+       <div style={{display:'flex'}}> 
+      <p>User Email Id:</p>
+        <h4 style={{fontSize:'18px',marginLeft:'24px',color:'darkorange'}}>
+        {props.userInfo ? props.userInfo.email : "" }
+      </h4> 
+      </div>
+      {/* <p>
+        <b>No. of Games</b>
       </p>
       <p>
-        <b>Designation: &emsp; </b>
-      </p>
-      <p>
-        <b>No. of Games: &emsp;</b>
-      </p>
-      <p>
-        <b>Winner: &emsp;</b>
-      </p>
-      <p>
-        <b>Last Login: &emsp;</b>
-      </p>
+        <b>Winner:</b>
+                <p>Email:&emsp;{props.userInfo ? props.userInfo.email : ""}</p>
+
+      </p> */} 
+      <div style={{display:'flex'}}> 
+      <p>Last Login Date:</p>
+        <h4 style={{fontSize:'18px',marginLeft:'24px',color:'darkorange'}}>
+        {props.userInfo ? new Date(props.userInfo.lastActive).toLocaleDateString()+ '' : ""}
+      </h4> 
+      </div>
+      <div style={{display:'flex'}}> 
+
+      <p>Last Login Time:</p>
+        <h4 style={{fontSize:'18px',marginLeft:'24px',color:'darkorange'}}>
+       {props.userInfo ? new Date(props.userInfo.lastActive).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric',hour12: true })+ '' : ""}
+      </h4> 
+      </div>
+ 
     </>
   );
 };

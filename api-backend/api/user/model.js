@@ -7,6 +7,9 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please provide your name'],
     },
+    image: {
+        type: String
+    },
     email: {
         type: String,
         required: [true, 'Please provide an email address'],
@@ -26,7 +29,11 @@ const userSchema = new mongoose.Schema({
         default: Date.now
     },
     lastActive: {
-        type: Date
+        type: Date,
+        default: Date.now
+    },
+    noOfGames: {
+        type: Number
     }
 });
 
