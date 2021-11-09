@@ -89,19 +89,23 @@ const Profile = () => {
 
 const UserInfo = (props) => {
   console.log('sdd',props.userInfo)
+  
   return (
     <>
       <p>
         <b>Email:{props.userInfo ? props.userInfo.email : ""}</b>
       </p>
-      <p>
+      {/* <p>
         <b>No. of Games</b>
       </p>
       <p>
         <b>Winner:</b>
+      </p> */}
+      <p>
+        <b>Last Login Date: {props.userInfo ? new Date(props.userInfo.lastActive).toLocaleDateString()+ '' : ""}</b>
       </p>
       <p>
-        <b>Last Login:</b>
+        <b>Last Login Time: {props.userInfo ? new Date(props.userInfo.lastActive).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric',hour12: true })+ '' : ""}</b>
       </p>
     </>
   );
