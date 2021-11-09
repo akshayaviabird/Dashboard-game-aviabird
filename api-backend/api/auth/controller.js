@@ -70,6 +70,8 @@ exports.login = async (req, res, next) => {
     return res.status(400).json({ success: 'false', msg: 'Invalid Password!' });
   }
 
+  await User.findOneAndUpdate({email},{'$set' : { 'lastActive' : Date.now()} })
+  
   sendTokenResponse(user, 200, res);
 };
 
