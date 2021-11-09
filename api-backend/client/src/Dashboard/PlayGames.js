@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Qq from '../../src/Qq.gif';
+import './PlayGame.css';
 import PokerLogo from "../../src/card-logo.jpg"; 
 import { Modal, Button } from "react-bootstrap";
 import "./PlayGame.css";
@@ -74,50 +76,26 @@ const PlayGames = () => {
             onHide={() => setModalShow(false)}
           />
         </div>
-        <div
-          className="col-sm-12"
-          style={{
-            marginTop: "10px",
+        <div className="col-sm-12"
+                    style={{
+                        marginTop: '10px',
 
-            overflowY: "scroll",
-            height: "75vh",
-          }}
-        >
-          {livegameList.length < 1 && (
-            <div className="row" style={{ marginTop: "20px" }}>
-              <div className="col-sm-12">
-                <div
-                  className="card_game"
-                  style={{
-                    background: "#35B6D0",
-                    margin: "auto",
-                    width: "90%",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    borderRadius: "10px",
-                    height: "70px",
-                  }}
-                >
-                  <div style={{ paddingLeft: "10%", textAlign: "left" }}>
-                    <h3
-                      style={{
-                        color: "white",
-                        marginLeft: "65px",
-                        marginTop: "20px",
-                      }}
-                    >
-                      No Live Game Found
-                    </h3>
-                  </div>
+                        overflowY: "scroll",
+                        height: "75vh"
+                    }}>
+                    {livegameList.length !== 0 ? livegameList.map((item) => <GameCard item={item} />) :
+                        <div> <div className="blinkk" style={{ margin: 'auto', marginTop: '115px', fontWeight: 'bold', fontFamily: 'auto', fontSize: '5em' }}>
+                            <div>No Live Games!</div>
+                            <div>Host One</div>
+                        </div>
+                            <marquee direction="right"><img style={{ width: '350px', height: '200px' }} src={Qq} alt="" /> <span style={{ fontSize: '4em', fontWeight: "bold", color: 'tomato' }}>Games</span></marquee>
+                        </div>
+
+                    }
                 </div>
-              </div>
-            </div>
-          )}
-          {livegameList.map((item) => (
-            <GameCard item={item} />
-          ))}
         </div>
-      </div>
+        
+    
     </>
   );
 };
@@ -161,12 +139,12 @@ const GameCard = ({ item }) => {
             display: "flex",
             justifyContent: "space-between",
             borderRadius: "10px",
-            boxShadow: "0px 5px 0px 5px grey",
+            boxShadow: "0 1px 8px rgba(0, 0, 0, 0.25)",
           }}
         >
           <div style={{ paddingLeft: "10%", textAlign: "left" }}>
             <h3 style={{ color: "white" }}>Avia-Poker</h3>
-            <p style={{ fontWeight: "bold" }}>
+            <p style={{ fontWeight: 'bold', color: 'black',fontSize:'17px',fontFamily: 'monospace'}}>
               <span class="logged-in blink">●</span>&nbsp;{item.name}
             </p>
             <a href={`${item.url}&username=${username}&email=${userEmail}`} target="_blank" rel="noreferrer">
@@ -193,7 +171,7 @@ const GameCard = ({ item }) => {
               alt=""
               style={{
                 width: "100%",
-                height: "100%",
+                height: "104%",
                 borderRadius: "0 10px 10px 0",
               }}
             />
