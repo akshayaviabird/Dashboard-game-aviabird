@@ -31,9 +31,9 @@ const Login = () => {
     setValues({ ...values, error: false, loading: true });
     signin({ email, password }) 
     .then(data => { 
-        if (data.success === 'false') { 
-          setValues({ ...values, error: data.msg, loading: false });
-        } else {
+        // if (data.success === 'false') { 
+        //   setValues({ ...values, error: data.msg, loading: false });
+        // } else {
           console.log(data)
 
           authenticate(data, () => {
@@ -42,7 +42,10 @@ const Login = () => {
               didRedirect: true
             }); 
           });
-        }
+        // }
+      }).catch((err)=>{
+        console.log('asdsd',err)
+        setValues({ ...values, error: err.message, loading: false });
       })
   };
 

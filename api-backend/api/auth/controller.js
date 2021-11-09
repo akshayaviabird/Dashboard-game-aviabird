@@ -6,20 +6,24 @@ const User = require('../user/model');
 // access public
 exports.register = async (req, res, next) => {
   const { name, email, password } = req.body;
-  
+  const user = await User.findOne({ email }) 
+
+  if (user) {
+    return res.status(200).json({ success: 'false', msg: 'User already registered!' });
+  }
   if(!req.files){
-    return res.status(400).json({ success: 'false', msg: 'Please upload a file!' });
+    return res.status(200).json({ success: 'false', msg: 'Please upload a file!' });
   };
   const file = req.files.file;
 
   // Make sure the image is a photo
   if (!file.mimetype.startsWith('image')) {
-    return res.status(400).json({ success: 'false', msg: 'Please upload an Image file only!' });
+    return res.status(200).json({ success: 'false', msg: 'Please upload an Image file only!' });
   }
 
   // Check filesize
   if (file.size > process.env.MAX_FILE_UPLOAD) {
-    return res.status(400).json({ success: 'false', msg: `Please upload an image less than ${process.env.MAX_FILE_UPLOAD}` });
+    return res.status(200).json({ success: 'false', msg: `Please upload an image less than ${process.env.MAX_FILE_UPLOAD}` });
     
   };
 

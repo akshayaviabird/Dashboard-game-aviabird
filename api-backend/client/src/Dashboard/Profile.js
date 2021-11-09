@@ -6,6 +6,9 @@ import ProfileImg from '../rohit.png';
 const Profile = () => {
   const history = useHistory();
   const [profile, setProfile] = useState("");
+  
+  
+
   useEffect(() => {
     const data = isAutheticated();
     if (!data) {
@@ -14,6 +17,7 @@ const Profile = () => {
       findMe();
     }
   }, [history]);
+
 
   const findMe = () => {
     const token = JSON.parse(localStorage.getItem("jwt")).token;
@@ -53,7 +57,7 @@ const Profile = () => {
             marginTop: "50px",
           }}
         >
-          <img src={ProfileImg} style={{ height: '198px', width: '198px', borderRadius: '150px' }} alt="ProfileImg" />
+          <img src={profile.image? `/imageme/${profile.image}`:ProfileImg} style={{ height: '198px', width: '198px', borderRadius: '150px' }} alt="ProfileImg" />
         </div>
         <div style={{ marginTop: "20px", marginBottom: "10px" }}>
           <h3>{profile ? profile.name : "Name"}</h3>
@@ -84,22 +88,24 @@ const Profile = () => {
 };
 
 const UserInfo = (props) => {
+  console.log('sdd',props.userInfo)
+  
   return (
     <>
       <p>
         <b>Email:{props.userInfo ? props.userInfo.email : ""}</b>
       </p>
-      <p>
-        <b>Designation: </b>
-      </p>
-      <p>
+      {/* <p>
         <b>No. of Games</b>
       </p>
       <p>
         <b>Winner:</b>
+      </p> */}
+      <p>
+        <b>Last Login Date: {props.userInfo ? new Date(props.userInfo.lastActive).toLocaleDateString()+ '' : ""}</b>
       </p>
       <p>
-        <b>Last Login:</b>
+        <b>Last Login Time: {props.userInfo ? new Date(props.userInfo.lastActive).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric',hour12: true })+ '' : ""}</b>
       </p>
     </>
   );
