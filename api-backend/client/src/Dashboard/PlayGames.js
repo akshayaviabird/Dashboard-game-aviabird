@@ -247,7 +247,7 @@ function MyVerticallyCenteredModal(props) {
       <Modal.Body>
         <a
           target="_blank"
-          href={`http://localhost:4000?username=${username}&email=${userEmail}/`}
+          href={`https://aviapoker.herokuapp.com/?username=${username}&email=${userEmail}/`}
           // href={`https://aviapoker.herokuapp.com`}
           rel="noreferrer"
         >
