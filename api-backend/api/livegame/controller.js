@@ -30,10 +30,16 @@ exports.createLiveGame = async (req,res,next) => {
 // @acces public
 
 exports.updateLiveGame = async (req,res,next) => {
-    const game = await LiveGame.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
-        runValidators: true
-    });
+    let game;
+    if(req.body.noOfPlayers>0){
+        game = await LiveGame.findByIdAndUpdate(req.params.id, {$inc: {noOfPlayers: 1}})
+    }else{
+        game = await LiveGame.findByIdAndUpdate(req.params.id, req.body, {
+            new: true,
+            runValidators: true
+        });
+    }
+    
     if(!game){
         return res.status(400).json({ success: false});
     }
