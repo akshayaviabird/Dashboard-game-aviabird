@@ -123,6 +123,32 @@ const PlayGames = () => {
 };
 
 const GameCard = ({ item }) => {
+  const [username,setUserName]=useState('')
+  const [userEmail,setUserEmail]=useState('')
+
+
+  useEffect(() => { 
+    findMe()
+  }, []);
+ const findMe = () => {
+    const token = JSON.parse(localStorage.getItem("jwt")).token;
+    fetch("/api/v1/user/me", {
+      method: "get",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        setUserName(result.data.name);
+        setUserEmail(result.data.email)
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  };
   return (
     <div className="row" style={{ marginTop: "20px" }}>
       <div className="col-sm-12">
@@ -143,7 +169,7 @@ const GameCard = ({ item }) => {
             <p style={{ fontWeight: "bold" }}>
               <span class="logged-in blink">●</span>&nbsp;{item.name}
             </p>
-            <a href={item.url} target="_blank" rel="noreferrer">
+            <a href={`${item.url}&username=${username}&email=${userEmail}`} target="_blank" rel="noreferrer">
               {" "}
               <button
                 style={{
@@ -221,8 +247,8 @@ function MyVerticallyCenteredModal(props) {
       <Modal.Body>
         <a
           target="_blank"
-          // href={`https://aviapoker.herokuapp.com?username=${username}&email=${userEmail}/`}
-          href={`https://aviapoker.herokuapp.com`}
+          href={`http://localhost:4000?username=${username}&email=${userEmail}/`}
+          // href={`https://aviapoker.herokuapp.com`}
           rel="noreferrer"
         >
           <button
@@ -242,6 +268,11 @@ function MyVerticallyCenteredModal(props) {
             Avia-Poker
           </button>
         </a>
+        <a 
+               target="_blank"
+               href={`https://aviaguessword.herokuapp.com`}
+               rel="noreferrer"
+        >
         <button
           style={{
             width: "187px",
@@ -257,6 +288,7 @@ function MyVerticallyCenteredModal(props) {
           {" "}
           Guessing-Word
         </button>
+        </a>
       </Modal.Body>
       <Modal.Footer>
         <Button className="modle-close" onClick={props.onHide}>Close</Button>
